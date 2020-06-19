@@ -10,11 +10,11 @@ public class jsonplaceholderDeleteTest {
     private final String PHOTOS = "photos";
 
     @Test
-    public void jsonplaceholderDeletePhoto(){
+    public void jsonplaceholderDeletePhoto() {
 
         Response response = given()
                 .when()
-                .delete( BASE_URL + "/" + PHOTOS + "/1")
+                .delete(BASE_URL + "/" + PHOTOS + "/1")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()

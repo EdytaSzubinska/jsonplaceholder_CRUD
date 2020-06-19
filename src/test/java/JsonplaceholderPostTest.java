@@ -23,44 +23,45 @@ public class JsonplaceholderPostTest {
     private Integer fakeAlbumId;
 
     @BeforeAll
-    public static void beforeAll(){
+    public static void beforeAll() {
         faker = new Faker();
     }
 
     @BeforeEach
-    public void beforeEach(){
+    public void beforeEach() {
         fakeTitle = faker.name().title();
         fakeUrl = faker.internet().url();
         fakeAlbumId = faker.number().randomDigit();
         fakeThumbnailUrl = faker.internet().url();
     }
-        @Test
-        public void jsonplaceholderCreateNewPhoto(){
 
-            JSONObject photo = new JSONObject();
-            photo.put("albumId", fakeAlbumId);
-            photo.put("title", fakeTitle);
-            photo.put("url", fakeUrl);
-            photo.put("thumbnailUrl", fakeThumbnailUrl);
+    @Test
+    public void jsonplaceholderCreateNewPhoto() {
+
+        JSONObject photo = new JSONObject();
+        photo.put("albumId", fakeAlbumId);
+        photo.put("title", fakeTitle);
+        photo.put("url", fakeUrl);
+        photo.put("thumbnailUrl", fakeThumbnailUrl);
 
 //            System.out.println(photo.toString());
 
-            Response response = given()
-                    .contentType("application/json")
-                    .body(photo.toString())
-                    .when()
-                    .post(BASE_URL + "/" + PHOTOS)
-                    .then()
-                    .statusCode(HttpStatus.SC_CREATED)
-                    .extract()
-                    .response();
+        Response response = given()
+                .contentType("application/json")
+                .body(photo.toString())
+                .when()
+                .post(BASE_URL + "/" + PHOTOS)
+                .then()
+                .statusCode(HttpStatus.SC_CREATED)
+                .extract()
+                .response();
 
-            JsonPath json = response.jsonPath();
-            assertEquals(fakeAlbumId, json.get("albumId"));
-            assertEquals(fakeTitle, json.get("title"));
-            assertEquals(fakeUrl, json.get("url"));
-            assertEquals(fakeThumbnailUrl, json.get("thumbnailUrl"));
-            assertEquals("5001", json.get("id").toString());
-        }
+        JsonPath json = response.jsonPath();
+        assertEquals(fakeAlbumId, json.get("albumId"));
+        assertEquals(fakeTitle, json.get("title"));
+        assertEquals(fakeUrl, json.get("url"));
+        assertEquals(fakeThumbnailUrl, json.get("thumbnailUrl"));
+        assertEquals("5001", json.get("id").toString());
     }
+}
 

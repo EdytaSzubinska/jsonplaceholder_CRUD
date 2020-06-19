@@ -22,7 +22,7 @@ public class jsonplaceholderPutPachTest {
     private Integer fakeAlbumId;
 
     @BeforeAll
-    public static void beforeAll(){
+    public static void beforeAll() {
         faker = new Faker();
     }
 
@@ -35,7 +35,7 @@ public class jsonplaceholderPutPachTest {
     }
 
     @Test
-    public void jsonplaceholderUpdatePhotoPutTest(){
+    public void jsonplaceholderUpdatePhotoPutTest() {
 
         JSONObject photo = new JSONObject();
         photo.put("albumId", fakeAlbumId);
@@ -66,25 +66,20 @@ public class jsonplaceholderPutPachTest {
     public void jsonplaceholderUpdatePhotoPatchTest() {
 
         JSONObject photoDetails = new JSONObject();
-        photoDetails.put("albumId", fakeAlbumId);
         photoDetails.put("title", fakeTitle);
-        photoDetails.put("url", fakeUrl);
-        photoDetails.put("thumbnailUrl", fakeThumbnailUrl);
 
         Response response = given()
                 .contentType("application/json")
                 .body(photoDetails.toString())
                 .when()
-                .put(BASE_URL + "/" + PHOTOS + "/1")
+                .patch(BASE_URL + "/" + PHOTOS + "/1")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .response();
 
         JsonPath json = response.jsonPath();
-        assertEquals(fakeAlbumId, json.get("albumId"));
         assertEquals(fakeTitle, json.get("title"));
-        assertEquals(fakeUrl, json.get("url"));
-        assertEquals(fakeThumbnailUrl, json.get("thumbnailUrl"));
+
     }
 }

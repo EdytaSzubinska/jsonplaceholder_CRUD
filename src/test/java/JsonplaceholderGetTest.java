@@ -13,7 +13,7 @@ public class JsonplaceholderGetTest {
     private final String PHOTOS = "photos";
 
     @Test
-    public void jsonplaceholderReadAllPhotos(){
+    public void jsonplaceholderReadAllPhotos() {
 
         Response response = given()
                 .when()
@@ -34,7 +34,7 @@ public class JsonplaceholderGetTest {
     }
 
     @Test
-    public void jsonplaceholderReadOnePhotos(){
+    public void jsonplaceholderReadOnePhoto() {
 
         Response response = given()
                 .when()
@@ -52,7 +52,7 @@ public class JsonplaceholderGetTest {
     }
 
     @Test
-    public void jsonplaceholderReadOnePhotosWithPathVariables(){
+    public void jsonplaceholderReadOnePhotosWithPathVariables() {
 
         Response response = given()
                 .pathParam("albumId", 1)
@@ -71,7 +71,7 @@ public class JsonplaceholderGetTest {
     }
 
     @Test
-    public void jsonplaceholderReadPhotosWithQueryParams(){
+    public void jsonplaceholderReadPhotosWithQueryParams() {
 
         Response response = given()
                 .queryParam("title", "accusamus beatae ad facilis cum similique qui sunt")
